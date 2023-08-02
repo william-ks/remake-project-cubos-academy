@@ -1,6 +1,8 @@
-import express from 'express';
-import "dotenv/config";
+import "express-async-errors";
 import cors from "cors";
+import { handleError } from "./api/middleware/handleError";
+import "dotenv/config";
+import express from 'express';
 import { router } from './api/routes';
 
 class AppConfig {
@@ -20,6 +22,7 @@ class AppConfig {
 
   private routes(): void {
     this.express.use(router);
+    this.express.use(handleError);
   }
 }
 
