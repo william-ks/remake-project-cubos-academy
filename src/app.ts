@@ -1,6 +1,7 @@
 import express from 'express';
 import "dotenv/config";
 import cors from "cors";
+import { router } from './api/routes';
 
 class AppConfig {
   public express: express.Application;
@@ -18,7 +19,7 @@ class AppConfig {
   }
 
   private routes(): void {
-
+    this.express.use(router);
   }
 }
 
