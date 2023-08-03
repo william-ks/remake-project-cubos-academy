@@ -3,7 +3,7 @@ import { User } from "../../entities/user";
 import { IUserRepository } from "../IUserRepository";
 
 export class PostgresUserRepository implements IUserRepository {
-    async findByEmail(email: string): Promise<User> {
+    async findByEmail(email: string): Promise<User | void> {
         const user = await prisma.user.findFirst({
             where: {
                 email

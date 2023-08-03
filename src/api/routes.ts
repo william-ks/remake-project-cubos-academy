@@ -1,7 +1,9 @@
 import { Router } from "express";
-import { createUserController } from "./useCases/createUser";
 import { bodyValidation } from "./middleware/bodyValidation";
-import { createUserSchema } from "./useCases/createUser/createUserSchema";
+import { createUserController } from "./use-cases/createUser";
+import { createUserSchema } from "./use-cases/createUser/createUserSchema";
+import { AuthenticateUserSchema } from "./use-cases/authenticateUser/AuthenticateUserSchema";
+import { authenticateUserController } from "./use-cases/authenticateUser";
 
 const router = Router();
 
@@ -12,5 +14,10 @@ router.get('/', (req, res) => {
 router.post('/user', bodyValidation(createUserSchema), (req, res) => {
     return createUserController.handle(req, res);
 })
+// gmail.com
+router.post('/authenticate', bodyValidation(AuthenticateUserSchema), (req, res) => {
+    return authenticateUserController.handle(req, res);
+})
 
 export { router };
+
