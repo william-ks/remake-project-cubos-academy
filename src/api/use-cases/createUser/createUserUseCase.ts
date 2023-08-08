@@ -12,7 +12,9 @@ export class CreateUserUseCase {
     async execute(data: ICreateUserRequestDTO): Promise<void> {
         const userAlreadyExists = await this.userRepository.findByEmail(data.email);
 
-        if (userAlreadyExists) throw new Error('This user already exists in our database.:400');
+        if (userAlreadyExists) {
+            throw new Error('This user already exists in our database.:400');
+        }
 
         const hashPass = await this.bcrypt.hash(data.password);
 
