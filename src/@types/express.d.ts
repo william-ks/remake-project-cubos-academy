@@ -1,4 +1,4 @@
-export interface userRequest {
+export interface IUserRequest {
     id: string,
     name: string;
     email: string
@@ -7,7 +7,7 @@ export interface userRequest {
 declare global {
     namespace Express {
         export interface Request {
-            user: Partial<userRequest>;
+            user: IUserRequest;
         }
     }
 }
