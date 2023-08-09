@@ -1,4 +1,4 @@
 export interface AuthenticateUserDTO {
-	email: string;
-	password: string
+  email: string;
+  password: string;
 }

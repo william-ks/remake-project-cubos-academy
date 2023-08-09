@@ -9,13 +9,13 @@ const jwt = new JwtTokens();
 const prismaUserRepository = new PrismaUserRepository();
 
 const authenticateUserUseCase = new AuthenticateUserUseCase(
-	prismaUserRepository,
-	bcrypt,
-	jwt,
+  prismaUserRepository,
+  bcrypt,
+  jwt,
 );
 
 const authenticateUserController = new AuthenticateUserController(
-	authenticateUserUseCase,
+  authenticateUserUseCase,
 );
 
 export { authenticateUserUseCase, authenticateUserController };

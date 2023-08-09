@@ -10,25 +10,25 @@ import { updateUserController } from "./use-cases/updateUser";
 const router = Router();
 
 router.post("/user", bodyValidation(createUserSchema), (req, res) => {
-	return createUserController.handle(req, res);
+  return createUserController.handle(req, res);
 });
 
 router.post(
-	"/authenticate",
-	bodyValidation(AuthenticateUserSchema),
-	(req, res) => {
-		return authenticateUserController.handle(req, res);
-	},
+  "/authenticate",
+  bodyValidation(AuthenticateUserSchema),
+  (req, res) => {
+    return authenticateUserController.handle(req, res);
+  },
 );
 
 router.use(authenticatedUserVerify);
 
 router.put("/user", (req, res) => {
-	return updateUserController.handle(req, res);
+  return updateUserController.handle(req, res);
 });
 
 router.get("/", (req, res) => {
-	return res.status(200).send();
+  return res.status(200).send();
 });
 
 export { router };

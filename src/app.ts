@@ -2,8 +2,8 @@ import "express-async-errors";
 import cors from "cors";
 import { handleError } from "./api/middleware/handleError";
 import "dotenv/config";
-import express from 'express';
-import { router } from './api/routes';
+import express from "express";
+import { router } from "./api/routes";
 
 class AppConfig {
   public express: express.Application;
