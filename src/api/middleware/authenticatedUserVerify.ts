@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import { JwtTokens } from "../providers/implementations/JwtTokens";
-import { IUserRequest } from "../../@types/express";
 
 export const authenticatedUserVerify = async (
   req: Request,

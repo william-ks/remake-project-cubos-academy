@@ -6,6 +6,7 @@ import { AuthenticateUserSchema } from "./use-cases/authenticateUser/Authenticat
 import { authenticateUserController } from "./use-cases/authenticateUser";
 import { authenticatedUserVerify } from "./middleware/authenticatedUserVerify";
 import { updateUserController } from "./use-cases/updateUser";
+import { readSelfUserController } from "./use-cases/readSelfUser";
 
 const router = Router();
 
@@ -27,8 +28,8 @@ router.put("/user", (req, res) => {
   return updateUserController.handle(req, res);
 });
 
-router.get("/", (req, res) => {
-  return res.status(200).send();
+router.get("/user", (req, res) => {
+  return readSelfUserController.handle(req, res);
 });
 
 export { router };
