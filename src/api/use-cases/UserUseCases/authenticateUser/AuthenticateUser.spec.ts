@@ -1,8 +1,8 @@
 import { describe, expect, test } from "vitest";
-import { InMemoryUsersRepository } from "../../../../tests/repositories/inMemoryUsersRepository";
-import { User } from "../../entities/user";
-import { Bcrypt } from "../../providers/implementations/BcryptPassword";
-import { JwtTokens } from "../../providers/implementations/JwtTokens";
+import { InMemoryUsersRepository } from "../../../../../tests/repositories/inMemoryUsersRepository";
+import { User } from "../../../entities/user";
+import { Bcrypt } from "../../../providers/implementations/BcryptPassword";
+import { JwtTokens } from "../../../providers/implementations/JwtTokens";
 import { CreateUserUseCase } from "../createUser/createUserUseCase";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
 

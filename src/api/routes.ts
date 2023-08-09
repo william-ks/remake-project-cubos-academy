@@ -1,12 +1,12 @@
 import { Router } from "express";
 import { bodyValidation } from "./middleware/bodyValidation";
-import { createUserController } from "./use-cases/createUser";
-import { createUserSchema } from "./use-cases/createUser/createUserSchema";
-import { AuthenticateUserSchema } from "./use-cases/authenticateUser/AuthenticateUserSchema";
-import { authenticateUserController } from "./use-cases/authenticateUser";
+import { createUserController } from "./use-cases/UserUseCases/createUser";
+import { createUserSchema } from "./use-cases/UserUseCases/createUser/createUserSchema";
+import { AuthenticateUserSchema } from "./use-cases/UserUseCases/authenticateUser/AuthenticateUserSchema";
+import { authenticateUserController } from "./use-cases/UserUseCases/authenticateUser";
 import { authenticatedUserVerify } from "./middleware/authenticatedUserVerify";
-import { updateUserController } from "./use-cases/updateUser";
-import { readSelfUserController } from "./use-cases/readSelfUser";
+import { updateUserController } from "./use-cases/UserUseCases/updateUser";
+import { readSelfUserController } from "./use-cases/UserUseCases/readSelfUser";
 
 const router = Router();
 
