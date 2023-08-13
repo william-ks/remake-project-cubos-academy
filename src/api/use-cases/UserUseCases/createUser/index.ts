@@ -1,7 +1,7 @@
 import { CreateUserUseCase } from "./createUserUseCase";
 import { CreateUserController } from "./createUserController";
-import { PrismaUserRepository } from "./../../repositories/implementations/PrismaUserRepository";
-import { Bcrypt } from "../../providers/implementations/BcryptPassword";
+import { PrismaUserRepository } from "../../../repositories/implementations/PrismaUserRepository";
+import { Bcrypt } from "../../../providers/implementations/BcryptPassword";
 
 const prismaUserRepository = new PrismaUserRepository();
 

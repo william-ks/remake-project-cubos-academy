@@ -1,7 +1,7 @@
-import { User } from "../../entities/user";
-import { IBcrypt } from "../../providers/IBcryptPassword";
-import { IJwt } from "../../providers/IJwt";
-import { IUserRepository } from "../../repositories/IUserRepository";
+import { User } from "../../../entities/user";
+import { IBcrypt } from "../../../providers/IBcryptPassword";
+import { IJwt } from "../../../providers/IJwt";
+import { IUserRepository } from "../../../repositories/IUserRepository";
 import { AuthenticateUserDTO } from "./AuthenticateUserDTO";
 
 export class AuthenticateUserUseCase {
@@ -28,9 +28,7 @@ export class AuthenticateUserUseCase {
     }
 
     const accessToken = await this.jwt.sign({
-      userId: {
-        id: userFound.id as string,
-      },
+      userId: userFound.id as string,
       expiresIn: "8h",
     });
 

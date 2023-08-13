@@ -1,16 +1,16 @@
-import { User } from '../../src/api/entities/user';
-import { IUserRepository } from './../../src/api/repositories/IUserRepository';
+import { User } from "../../src/api/entities/user";
+import { IUserRepository } from "./../../src/api/repositories/IUserRepository";
 
 export class InMemoryUsersRepository implements IUserRepository {
-    public users: User[] = [];
+  public users: User[] = [];
 
-    async findByEmail(email: string): Promise<User | void> {
-        const user = this.users.find(el => el.email === email);
+  async findByEmail(email: string): Promise<User | void> {
+    const user = this.users.find((el) => el.email === email);
 
-        return user
-    }
+    return user;
+  }
 
-    async save(user: User): Promise<void> {
-        this.users.push(user)
-    }
+  async save(user: User): Promise<void> {
+    this.users.push(user);
+  }
 }
