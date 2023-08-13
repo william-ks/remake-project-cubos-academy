@@ -2,11 +2,10 @@ import { uuid } from "uuidv4";
 
 export interface IClientAddress {
   zipCode?: string;
-  publicPlace?: string;
   complement?: string;
   neighborhood?: string;
   city?: string;
-  status?: string;
+  state?: string;
 }
 
 export class Client {

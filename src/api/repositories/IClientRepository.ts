@@ -2,9 +2,11 @@
 import { Client } from "../entities/client";
 
 export interface IParameters {
-  parameters: "id" | "email" | "cpf";
+  type: "id" | "email" | "cpf";
+  value: string;
 }
 
 export interface IClientRepository {
   find_by(parameters: IParameters): Promise<Client>;
+  save(data: Client): Promise<void>;
 }

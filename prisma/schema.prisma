@@ -20,9 +20,16 @@ model User {
 }
 
 model Client {
-  id    String @id @default(uuid())
-  name  String
-  email String
-  cpf   String
-  phone String
+  id           String  @id @default(uuid())
+  name         String
+  email        String
+  cpf          String
+  phone        String
+  zipCode      String?
+  complement   String?
+  neighborhood String?
+  city         String?
+  state        String?
+
+  @@map("clients")
 }
