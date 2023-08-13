@@ -28,9 +28,7 @@ export class AuthenticateUserUseCase {
     }
 
     const accessToken = await this.jwt.sign({
-      userId: {
-        id: userFound.id as string,
-      },
+      userId: userFound.id as string,
       expiresIn: "8h",
     });
 

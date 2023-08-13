@@ -1,6 +1,6 @@
 import { UpdateUserUseCase } from "./UpdateUserUseCase";
 import { UpdateUserController } from "./UpdateUserController";
-import { PrismaUserRepository } from "../../repositories/implementations/PrismaUserRepository";
+import { PrismaUserRepository } from "../../../repositories/implementations/PrismaUserRepository";
 
 const prismaUserRepository = new PrismaUserRepository();
 const updateUserUseCase = new UpdateUserUseCase(prismaUserRepository);

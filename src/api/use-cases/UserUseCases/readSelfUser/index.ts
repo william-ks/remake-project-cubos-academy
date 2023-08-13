@@ -1,6 +1,6 @@
 import { ReadSelfUserUseCase } from "./ReadSelfUserUseCase";
 import { ReadSelfUserController } from "./ReadSelfUserController";
-import { PrismaUserRepository } from "../../repositories/implementations/PrismaUserRepository";
+import { PrismaUserRepository } from "../../../repositories/implementations/PrismaUserRepository";
 
 const userRepository = new PrismaUserRepository();
 const readSelfUserUseCase = new ReadSelfUserUseCase(userRepository);

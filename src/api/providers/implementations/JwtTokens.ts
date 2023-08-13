@@ -2,9 +2,9 @@ import jwt from "jsonwebtoken";
 import { IJwt, data } from "../IJwt";
 
 export class JwtTokens implements IJwt {
-  sign(data: data): string {
+  async sign(data: data): Promise<string> {
     const token = jwt.sign(
-      { ...data.user },
+      { id: data.userId },
       process.env.JWT_PASS || "needValue",
       {
         expiresIn: data.expiresIn,
@@ -14,9 +14,8 @@ export class JwtTokens implements IJwt {
     return token;
   }
 
-  verify(token: string): Object | Error {
+  async verify(token: string): Promise<string> {
     const data = jwt.verify(token, process.env.JWT_PASS || "needValue");
-
-    return data;
+    return data as string;
   }
 }
