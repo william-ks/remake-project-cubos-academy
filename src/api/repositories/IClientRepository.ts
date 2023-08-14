@@ -9,4 +9,5 @@ export interface IParameters {
 export interface IClientRepository {
   find_by(parameters: IParameters): Promise<Client>;
   save(data: Client): Promise<void>;
+  find_all(): Promise<Client[]>;
 }

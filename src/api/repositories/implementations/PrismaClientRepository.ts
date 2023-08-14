@@ -47,4 +47,9 @@ export class PrismaClientRepository implements IClientRepository {
       },
     });
   }
+
+  async find_all(): Promise<Client[]> {
+    const clients = await prisma.client.findMany();
+    return clients;
+  }
 }

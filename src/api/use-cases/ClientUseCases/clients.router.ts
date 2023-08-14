@@ -2,11 +2,16 @@ import { Router } from "express";
 import { createClientController } from "./createClient";
 import { bodyValidation } from "../../middleware/bodyValidation";
 import { CreateClientSchema } from "./createClient/CreateClientSchema";
+import { readAllClientController } from "./readAllClient";
 
 const clientRouter = Router();
 
 clientRouter.post("/client", bodyValidation(CreateClientSchema), (req, res) => {
   return createClientController.handle(req, res);
+});
+
+clientRouter.get("/client", (req, res) => {
+  return readAllClientController.handle(req, res);
 });
 
 export { clientRouter };
