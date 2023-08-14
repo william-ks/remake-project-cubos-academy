@@ -3,6 +3,7 @@ import { createClientController } from "./createClient";
 import { bodyValidation } from "../../middleware/bodyValidation";
 import { CreateClientSchema } from "./createClient/CreateClientSchema";
 import { readAllClientController } from "./readAllClient";
+import { readOneClientController } from "./readOneClient";
 
 const clientRouter = Router();
 
@@ -12,6 +13,10 @@ clientRouter.post("/client", bodyValidation(CreateClientSchema), (req, res) => {
 
 clientRouter.get("/client", (req, res) => {
   return readAllClientController.handle(req, res);
+});
+
+clientRouter.get("/client/:id", (req, res) => {
+  return readOneClientController.handle(req, res);
 });
 
 export { clientRouter };
