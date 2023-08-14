@@ -5,5 +5,5 @@ export interface data {
 
 export interface IJwt {
   sign(data: data): Promise<string>;
-  verify(token: string): Promise<string>;
+  verify(token: string): Promise<{ id: string }>;
 }

@@ -17,9 +17,8 @@ export const authenticatedUserVerify = async (
   const jwt = new JwtTokens();
 
   try {
-    const userData = jwt.verify(token);
-
-    req.user = userData;
+    const userData = await jwt.verify(token);
+    req.user = { id: userData.id };
 
     next();
   } catch (e) {

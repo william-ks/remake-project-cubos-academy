@@ -14,8 +14,8 @@ export class JwtTokens implements IJwt {
     return token;
   }
 
-  async verify(token: string): Promise<string> {
+  async verify(token: string): Promise<{ id: string }> {
     const data = jwt.verify(token, process.env.JWT_PASS || "needValue");
-    return data as string;
+    return data as { id: string };
   }
 }
