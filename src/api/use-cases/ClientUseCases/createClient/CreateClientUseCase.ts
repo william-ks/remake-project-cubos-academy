@@ -1,5 +1,5 @@
 import { Client } from "../../../entities/client";
-import { capitalizeNames } from "../../../functions/captalizeName";
+import { capitalizeNames } from "../../../functions/capitalizeName";
 import { IClientRepository } from "../../../repositories/IClientRepository";
 import { ICreateClientDTO } from "./CreateClientDTO";
 

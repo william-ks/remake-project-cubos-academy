@@ -1,4 +1,4 @@
-import { capitalizeNames } from "../../../functions/captalizeName";
+import { capitalizeNames } from "../../../functions/capitalizeName";
 import { IClientRepository } from "../../../repositories/IClientRepository";
 import { IUpdateClientDTO, IUpdateProps } from "./UpdateClientDTO";
 

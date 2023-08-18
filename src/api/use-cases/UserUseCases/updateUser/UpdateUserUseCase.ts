@@ -1,5 +1,5 @@
 import { User } from "../../../entities/user";
-import { capitalizeNames } from "../../../functions/captalizeName";
+import { capitalizeNames } from "../../../functions/capitalizeName";
 import { IUserRepository } from "../../../repositories/IUserRepository";
 import { IUpdateUserDTO } from "./UpdateUserDTO";
 

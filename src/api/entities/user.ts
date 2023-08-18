@@ -1,5 +1,5 @@
 import { uuid } from "uuidv4";
-import { capitalizeNames } from "../functions/captalizeName";
+import { capitalizeNames } from "../functions/capitalizeName";
 
 export class User {
   public readonly id: string | number;
