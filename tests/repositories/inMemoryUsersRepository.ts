@@ -1,5 +1,6 @@
 import { User } from "../../src/api/entities/user";
 import {
+  IFindByParameters,
   IUpdateUserRepoDTO,
   IUserRepository,
 } from "./../../src/api/repositories/IUserRepository";
@@ -7,14 +8,11 @@ import {
 export class InMemoryUsersRepository implements IUserRepository {
   public users: User[] = [];
 
-  async findByEmail(email: string): Promise<User | void> {
-    const user = this.users.find((el) => el.email === email);
-
-    return user;
-  }
-
-  async findById(id: string | number): Promise<void | User> {
-    const user = this.users.find((el) => el.id === id);
+  async find_by(props: IFindByParameters): Promise<void | User> {
+    const { key, value } = props;
+    const user = await this.users.find((el) => {
+      return el[key] === value;
+    });
 
     return user;
   }
