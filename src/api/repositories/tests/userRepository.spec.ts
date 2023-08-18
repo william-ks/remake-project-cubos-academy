@@ -24,7 +24,10 @@ describe("create user", async () => {
   });
 
   test("find_by_email", async () => {
-    const response = await userRepository.findByEmail(user.email);
+    const response = await userRepository.find_by({
+      key: "email",
+      value: user.email,
+    });
     expect(response).toHaveProperty("name", user.name);
 
     if (response) {
@@ -33,7 +36,10 @@ describe("create user", async () => {
   });
 
   test("find_by_id", async () => {
-    const response = await userRepository.findById(userId);
+    const response = await userRepository.find_by({
+      key: "id",
+      value: userId,
+    });
     expect(response).toHaveProperty("name", user.name);
   });
 });

@@ -8,21 +8,21 @@ describe("test", () => {
   const bcrypt = new Bcrypt();
   const createUserUseCase = new CreateUserUseCase(userRepository, bcrypt);
 
-  const userExample = {
-    name: "will",
+  const user = {
+    name: "John Doe",
     email: "john@gmail.com",
     password: "teste123",
   };
 
   test("create user ", async () => {
-    await createUserUseCase.execute(userExample);
+    await createUserUseCase.execute(user);
 
-    expect(userRepository.users[0]).toHaveProperty("name", "will");
+    expect(userRepository.users[0]).toHaveProperty("name", user.name);
   });
 
   test("try repeated User", async () => {
     try {
-      await createUserUseCase.execute(userExample);
+      await createUserUseCase.execute(user);
     } catch (e) {
       expect(e.message).toBe("This user already exists in our database.:400");
     }
