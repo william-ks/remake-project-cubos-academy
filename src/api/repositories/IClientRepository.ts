@@ -5,6 +5,7 @@ export interface IFindByParameters {
   key: "id" | "email" | "cpf";
   value: string;
 }
+
 export interface IFindOtherParameters {
   clientId: string;
   key: "email" | "cpf";
