@@ -4,6 +4,8 @@ import { bodyValidation } from "../../middleware/bodyValidation";
 import { CreateClientSchema } from "./createClient/CreateClientSchema";
 import { readAllClientController } from "./readAllClient";
 import { readOneClientController } from "./readOneClient";
+import { updateClientController } from "./updateClient";
+import { UpdateClientSchema } from "./updateClient/UpdateClientSchema";
 
 const clientRouter = Router();
 
@@ -18,5 +20,13 @@ clientRouter.get("/client", (req, res) => {
 clientRouter.get("/client/:id", (req, res) => {
   return readOneClientController.handle(req, res);
 });
+
+clientRouter.put(
+  "/client/:id",
+  bodyValidation(UpdateClientSchema),
+  (req, res) => {
+    return updateClientController.handle(req, res);
+  },
+);
 
 export { clientRouter };
