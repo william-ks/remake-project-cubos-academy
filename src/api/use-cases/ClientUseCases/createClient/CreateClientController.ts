@@ -22,7 +22,11 @@ export class CreateClientController {
       email,
       cpf,
       phone,
-      address: { zipCode, complement, neighborhood, city, state },
+      zipCode,
+      complement,
+      neighborhood,
+      city,
+      state,
     };
 
     await this.createClientUseCase.execute(clientData);
