@@ -1,4 +1,3 @@
-import { uuid } from "uuidv4";
 import { User } from "../../src/api/entities/user";
 import {
   IUpdateUserRepoDTO,
@@ -26,9 +25,10 @@ export class InMemoryUsersRepository implements IUserRepository {
   }
 
   async save(user: User): Promise<void> {
-    this.users.push({
-      ...user,
-      id: uuid(),
-    });
+    this.users.push(
+      new User({
+        ...user,
+      }),
+    );
   }
 }
