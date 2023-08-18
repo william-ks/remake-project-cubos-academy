@@ -1,4 +1,5 @@
 import { uuid } from "uuidv4";
+import { capitalizeNames } from "../functions/captalizeName";
 
 export class Client {
   public readonly id?: string;
@@ -14,6 +15,8 @@ export class Client {
 
   constructor(props: Omit<Client, "id">, id?: string) {
     Object.assign(this, props);
+
+    this.name = capitalizeNames(this.name);
 
     if (!id) {
       this.id = uuid();
