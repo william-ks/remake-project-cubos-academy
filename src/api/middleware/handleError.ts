@@ -8,8 +8,8 @@ export const handleError = async (
 ) => {
   const message: string[] = error.message.split(":");
 
-  return res.status(+message[1] || 400).json({
+  return res.status(+message[1] || 500).json({
     status: "error",
-    message: message[0] || error.message,
+    message: message[0] || "Unexpected server error.",
   });
 };
