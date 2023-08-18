@@ -11,7 +11,7 @@ export class ReadSelfUserUseCase {
     });
 
     if (!user) {
-      throw new Error("Usuário não encontrado.:404");
+      throw new Error("User not found.:404");
     }
 
     const { password: _, ...returnedUser } = user;
