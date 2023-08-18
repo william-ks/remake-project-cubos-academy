@@ -5,9 +5,13 @@ export interface IUpdateUserRepoDTO {
   id: string;
 }
 
+export interface IFindByParameters {
+  key: "id" | "email";
+  value: string;
+}
+
 export interface IUserRepository {
-  findById(id: string | number): Promise<User | void>;
-  findByEmail(email: string): Promise<User | void>;
+  find_by(props: IFindByParameters): Promise<User | void>;
   save(user: User): Promise<void>;
   update(props: IUpdateUserRepoDTO): Promise<void>;
 }

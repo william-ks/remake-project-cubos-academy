@@ -12,7 +12,10 @@ export class AuthenticateUserUseCase {
   ) {}
 
   async execute(data: AuthenticateUserDTO) {
-    const userFound = await this.userRepository.findByEmail(data.email);
+    const userFound = await this.userRepository.find_by({
+      key: "email",
+      value: data.email,
+    });
 
     if (!userFound) {
       throw new Error("User not found.:404");

@@ -9,7 +9,10 @@ export class UpdateUserUseCase {
   async execute(data: IUpdateUserDTO, user: Partial<User>): Promise<void> {
     const dataToUpdate: IUpdateUserDTO = {};
 
-    const actualUser = await this.userRepository.findById(user.id);
+    const actualUser = await this.userRepository.find_by({
+      key: "id",
+      value: user.id as string,
+    });
 
     if (!actualUser) {
       throw new Error("Invalid Token.:401");
@@ -21,9 +24,10 @@ export class UpdateUserUseCase {
 
     if (data.email) {
       if (actualUser.email !== data.email) {
-        const alreadyExistsEmail = await this.userRepository.findByEmail(
-          data.email,
-        );
+        const alreadyExistsEmail = await this.userRepository.find_by({
+          key: "email",
+          value: data.email,
+        });
 
         if (alreadyExistsEmail) {
           if (alreadyExistsEmail.id !== actualUser.id) {
