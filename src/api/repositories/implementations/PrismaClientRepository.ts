@@ -1,34 +1,18 @@
 import { prisma } from "../../../configs/prisma";
 import { Client } from "../../entities/client";
-import { IClientRepository, IParameters } from "../IClientRepository";
+import {
+  IClientRepository,
+  IFindByParameters,
+  IFindOtherParameters,
+} from "../IClientRepository";
 
 export class PrismaClientRepository implements IClientRepository {
-  async find_by(parameters: IParameters): Promise<Client> {
-    let client;
-    switch (parameters.type) {
-      case "email":
-        client = prisma.client.findFirst({
-          where: {
-            email: parameters.value,
-          },
-        });
-        break;
-      case "id":
-        client = prisma.client.findFirst({
-          where: {
-            id: parameters.value,
-          },
-        });
-        break;
-      case "cpf":
-        client = prisma.client.findFirst({
-          where: {
-            cpf: parameters.value,
-          },
-        });
-        break;
-    }
-
+  async find_by({ key, value }: IFindByParameters): Promise<Client> {
+    const client = prisma.client.findFirst({
+      where: {
+        [key]: value,
+      },
+    });
     return client;
   }
 
@@ -39,17 +23,56 @@ export class PrismaClientRepository implements IClientRepository {
         email: data.email,
         cpf: data.cpf,
         phone: data.phone,
-        zipCode: data.address.zipCode || null,
-        complement: data.address.complement || null,
-        neighborhood: data.address.neighborhood || null,
-        city: data.address.city || null,
-        state: data.address.state || null,
+        zipCode: data.zipCode || null,
+        complement: data.complement || null,
+        neighborhood: data.neighborhood || null,
+        city: data.city || null,
+        state: data.state || null,
       },
     });
   }
 
   async find_all(): Promise<Client[]> {
-    const clients = await prisma.client.findMany();
+    const clients = await prisma.client.findMany({
+      orderBy: {
+        name: "asc",
+      },
+    });
     return clients;
+  }
+
+  async find_other(props: IFindOtherParameters): Promise<void> {
+    const { key, value, clientId } = props;
+    const found = await prisma.client.findMany({
+      where: {
+        [key]: value,
+      },
+    });
+
+    if (found.length > 1) {
+      throw new Error("Already exists a client with this CPF/E-mail:400");
+    }
+
+    if (found.length === 1) {
+      if (found[0].id !== clientId) {
+        throw new Error("Already exists a client with this CPF/E-mail:400");
+      }
+    }
+  }
+
+  async update(props: {
+    id: string;
+    dataToUpdate: Omit<Partial<Client>, "id">;
+  }): Promise<void> {
+    const { id, dataToUpdate } = props;
+
+    await prisma.client.update({
+      where: {
+        id,
+      },
+      data: {
+        ...dataToUpdate,
+      },
+    });
   }
 }
