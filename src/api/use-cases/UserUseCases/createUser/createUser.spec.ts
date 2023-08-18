@@ -1,7 +1,7 @@
 import { describe, test, expect } from "vitest";
 import { InMemoryUsersRepository } from "../../../../../tests/repositories/inMemoryUsersRepository";
 import { Bcrypt } from "../../../providers/implementations/BcryptPassword";
-import { CreateUserUseCase } from "./createUserUseCase";
+import { CreateUserUseCase } from "./CreateUserUseCase";
 
 describe("test", () => {
   const userRepository = new InMemoryUsersRepository();

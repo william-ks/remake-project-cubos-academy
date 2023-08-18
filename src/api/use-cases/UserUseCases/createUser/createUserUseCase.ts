@@ -1,7 +1,7 @@
 import { User } from "../../../entities/user";
 import { IBcrypt } from "../../../providers/IBcryptPassword";
 import { IUserRepository } from "../../../repositories/IUserRepository";
-import { ICreateUserRequestDTO } from "./createUserDTO";
+import { ICreateUserRequestDTO } from "./CreateUserDTO";
 
 export class CreateUserUseCase {
   constructor(
