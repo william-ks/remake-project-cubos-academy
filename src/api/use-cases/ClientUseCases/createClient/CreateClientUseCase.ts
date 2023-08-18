@@ -1,3 +1,4 @@
+import { Client } from "../../../entities/client";
 import { capitalizeNames } from "../../../functions/captalizeName";
 import { IClientRepository } from "../../../repositories/IClientRepository";
 import { ICreateClientDTO } from "./CreateClientDTO";
@@ -24,9 +25,10 @@ export class CreateClientUseCase {
       throw new Error("Already exists a client with this CPF/E-mail:400");
     }
 
-    await this.clientRepository.save({
+    const client = new Client({
       ...data,
-      name: capitalizeNames(data.name),
     });
+
+    await this.clientRepository.save(client);
   }
 }
