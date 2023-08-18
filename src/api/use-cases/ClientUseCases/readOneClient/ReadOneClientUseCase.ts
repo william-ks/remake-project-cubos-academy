@@ -7,7 +7,7 @@ export class ReadOneClientUseCase {
 
   async execute(props: IReadOneClientDTO): Promise<Client> {
     const client = await this.clientRepository.find_by({
-      type: "id",
+      key: "id",
       value: props.id,
     });
 
