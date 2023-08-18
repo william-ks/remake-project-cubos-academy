@@ -1,15 +1,12 @@
-import { IUserRequest } from "../../../@types/express";
-import { User } from "../../entities/user";
-import { IUserRepository } from "../../repositories/IUserRepository";
+import { User } from "../../../entities/user";
+import { capitalizeNames } from "../../../functions/captalizeName";
+import { IUserRepository } from "../../../repositories/IUserRepository";
 import { IUpdateUserDTO } from "./UpdateUserDTO";
 
 export class UpdateUserUseCase {
   constructor(private userRepository: IUserRepository) {}
 
-  async execute(
-    data: IUpdateUserDTO,
-    user: Partial<IUserRequest>,
-  ): Promise<void> {
+  async execute(data: IUpdateUserDTO, user: Partial<User>): Promise<void> {
     const dataToUpdate: IUpdateUserDTO = {};
 
     const actualUser = await this.userRepository.findById(user.id);
@@ -19,7 +16,7 @@ export class UpdateUserUseCase {
     }
 
     if (data.name) {
-      dataToUpdate.name = data.name;
+      dataToUpdate.name = capitalizeNames(data.name);
     }
 
     if (data.email) {
