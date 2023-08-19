@@ -2,6 +2,7 @@ import { describe, test, expect } from "vitest";
 import { InMemoryUsersRepository } from "../../../../../tests/repositories/inMemoryUsersRepository";
 import { Bcrypt } from "../../../providers/implementations/BcryptPassword";
 import { CreateUserUseCase } from "./CreateUserUseCase";
+import { User } from "../../../entities/user";
 
 describe("test", () => {
   const userRepository = new InMemoryUsersRepository();
@@ -15,14 +16,22 @@ describe("test", () => {
   };
 
   test("create user ", async () => {
-    await createUserUseCase.execute(user);
+    await createUserUseCase.execute(
+      new User({
+        ...user,
+      }),
+    );
 
     expect(userRepository.users[0]).toHaveProperty("name", user.name);
   });
 
   test("try repeated User", async () => {
     try {
-      await createUserUseCase.execute(user);
+      await createUserUseCase.execute(
+        new User({
+          ...user,
+        }),
+      );
     } catch (e) {
       expect(e.message).toBe("This user already exists in our database.:400");
     }
