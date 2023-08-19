@@ -43,20 +43,17 @@ export class PrismaClientRepository implements IClientRepository {
 
   async find_other(props: IFindOtherParameters): Promise<void> {
     const { key, value, clientId } = props;
-    const found = await prisma.client.findMany({
+    const found = await prisma.client.findFirst({
       where: {
         [key]: value,
+        NOT: {
+          id: clientId,
+        },
       },
     });
 
-    if (found.length > 1) {
+    if (found) {
       throw new Error("Already exists a client with this CPF/E-mail:400");
-    }
-
-    if (found.length === 1) {
-      if (found[0].id !== clientId) {
-        throw new Error("Already exists a client with this CPF/E-mail:400");
-      }
     }
   }
 

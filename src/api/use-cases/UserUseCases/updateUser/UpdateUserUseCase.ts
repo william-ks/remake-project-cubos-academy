@@ -24,18 +24,12 @@ export class UpdateUserUseCase {
 
     if (data.email) {
       if (actualUser.email !== data.email) {
-        const alreadyExistsEmail = await this.userRepository.find_by({
-          key: "email",
-          value: data.email,
+        await this.userRepository.find_other({
+          email: data.email,
+          userId: user.id as string,
         });
 
-        if (alreadyExistsEmail) {
-          if (alreadyExistsEmail.id !== actualUser.id) {
-            throw new Error("This e-mail already exist in our database.:400");
-          }
-        } else {
-          dataToUpdate.email = data.email;
-        }
+        dataToUpdate.email = data.email;
       }
     }
 
